@@ -326,6 +326,26 @@
       const post = window.App.Data.posts.find(x => x.id === id);
       renderPostModal(post);
     });
+    // Click empty day cell to create new post prefilled with that date
+    $('#calendar-view').on('click', '.calendar-cell', function(e){
+      if ($(e.target).closest('.post-card, .action-edit').length) return;
+      const iso = $(this).data('date');
+      if (!iso) return;
+      renderPostModal(null);
+      $('#post-date').val(iso);
+    });
+
+    // Keyboard support: Enter/Space on focused day cell
+    $('#calendar-view').on('keydown', '.calendar-cell', function(e){
+      if (e.key === 'Enter' || e.key === ' ') {
+        if ($(e.target).closest('.post-card, .action-edit').length) return;
+        e.preventDefault();
+        const iso = $(this).data('date');
+        if (!iso) return;
+        renderPostModal(null);
+        $('#post-date').val(iso);
+      }
+    });
 
     // Drag and drop for posts onto calendar cells
     $(document).on('dragstart', '.post-card', function(ev){
