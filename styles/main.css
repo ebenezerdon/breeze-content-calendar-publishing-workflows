@@ -1,0 +1,39 @@
+/* Global styles and enhancements (no Tailwind directives here) */
+:root {
+  --ring: 0 0% 0% / 0.1;
+}
+
+html:focus-within { scroll-behavior: smooth; }
+
+/***** Aesthetic helpers *****/
+.shadow-soft { box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06); }
+.shadow-lift { box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08); }
+
+/***** Smooth fade for modals *****/
+#post-modal.hidden, #channels-modal.hidden { display: none; }
+#post-modal.show, #channels-modal.show { display: flex; animation: fadeIn 180ms ease-out; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/***** Custom scrollbars *****/
+* { scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent; }
+*::-webkit-scrollbar { height: 8px; width: 8px; }
+*::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 999px; }
+*::-webkit-scrollbar-track { background: transparent; }
+
+/***** Accessible focus tweaks *****/
+:focus-visible { outline: 2px solid #93c5fd; outline-offset: 2px; }
+
+/***** Utility *****/
+.hide { display: none !important; }
+
+/***** Calendar subtle hover drop targets *****/
+.calendar-cell.drag-over { outline: 2px dashed #0ea5e9; outline-offset: -4px; background: #f0f9ff; }
+
+.post-card:active { cursor: grabbing; }
+
+/***** Mobile tweaks *****/
+@media (max-width: 640px) {
+  #backlog { order: 3; }
+  #filters { order: 2; }
+  .calendar-cell { min-height: 90px; }
+}
